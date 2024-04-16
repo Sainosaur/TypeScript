@@ -24,7 +24,7 @@ const exerciseCalculator = (hours: number[]): Result => {
         ratingDescription = "Good Job but can do better !"
     } if (average < 1) {
         rating = 1
-        ratingDescription = "Significant to improve..."
+        ratingDescription = "Significant room to improve..."
     }
     return {
         periodLength: hours.length,
