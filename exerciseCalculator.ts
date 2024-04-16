@@ -1,3 +1,5 @@
+import processedArgs from "./helpers/argsHelper"
+
 interface Result {
     periodLength: number,
     trainingDays: number,
@@ -37,4 +39,4 @@ const exerciseCalculator = (hours: number[]): Result => {
     }
 }
 
-console.log(exerciseCalculator([3, 0, 2, 4.5, 0, 3, 1]))
+console.log(exerciseCalculator(processedArgs()))

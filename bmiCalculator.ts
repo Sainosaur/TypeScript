@@ -1,3 +1,4 @@
+import processedArgs from "./helpers/argsHelper";
 
 const calculateBmi = (height: number, weight: number) => {
     const BMI: number = weight / Math.pow((height / 100), 2);
@@ -10,4 +11,4 @@ const calculateBmi = (height: number, weight: number) => {
     }
 }
 
-console.log(calculateBmi(180, 74))
+console.log(calculateBmi(processedArgs()[0], processedArgs()[1]))
