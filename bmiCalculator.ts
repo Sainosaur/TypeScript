@@ -1,6 +1,7 @@
 import processedArgs from "./helpers/argsHelper";
+type Response = "Under-weight" | "Normal (healthy weight)" | "Over-weight"
 
-const calculateBmi = (height: number, weight: number) => {
+const calculateBmi = (height: number, weight: number) : Response => {
     const BMI: number = weight / Math.pow((height / 100), 2);
     if (BMI < 18.5) {
         return "Under-weight"
