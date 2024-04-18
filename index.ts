@@ -17,7 +17,7 @@ app.get('/api/bmi', (req, res) => {
     const height = Number(req.query.height);
     const weight = Number(req.query.weight);
     if (height && weight) {
-        const bmiResponse = calculateBmi(Number(req.query.height) , Number(req.query.weight));
+        const bmiResponse = calculateBmi(height, weight);
         res.json({
             weight,
             height,

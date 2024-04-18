@@ -1,5 +1,3 @@
-
-
 type Response = "Under-weight" | "Normal (healthy weight)" | "Over-weight" | "Error"
 
 const calculateBmi = (height: number, weight: number) : Response => {
