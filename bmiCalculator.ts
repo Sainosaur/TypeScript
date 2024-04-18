@@ -1,5 +1,6 @@
-import processedArgs from "./helpers/argsHelper";
-type Response = "Under-weight" | "Normal (healthy weight)" | "Over-weight"
+
+
+type Response = "Under-weight" | "Normal (healthy weight)" | "Over-weight" | "Error"
 
 const calculateBmi = (height: number, weight: number) : Response => {
     const BMI: number = weight / Math.pow((height / 100), 2);
@@ -9,7 +10,9 @@ const calculateBmi = (height: number, weight: number) : Response => {
         return "Normal (healthy weight)"
     } else if ( 24.9 < BMI) {
         return "Over-weight"
+    } else {
+        return "Error"
     }
 }
 
-console.log(calculateBmi(processedArgs()[0], processedArgs()[1]))
+export default calculateBmi

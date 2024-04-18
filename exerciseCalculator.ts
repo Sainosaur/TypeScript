@@ -24,7 +24,7 @@ const exerciseCalculator = (hours: number[]): Result => {
     } if (average > 1) {
         rating = 2
         ratingDescription = "Good Job but can do better !"
-    } if (average < 1) {
+    } else {
         rating = 1
         ratingDescription = "Significant room to improve..."
     }
