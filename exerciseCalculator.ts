@@ -1,6 +1,4 @@
-import processedArgs from "./helpers/argsHelper"
-
-interface Result {
+export interface Result {
     periodLength: number,
     trainingDays: number,
     success: boolean,
@@ -11,7 +9,7 @@ interface Result {
 }
 // Remember going forward, output type always comes after parameters and before the arrow notation.
 
-const exerciseCalculator = (hours: number[]): Result => {
+const exerciseCalculator = (hours: number[], target: number): Result => {
     const trainingDays = hours.filter(day => day !== 0);
     let totalHours = 0;
     let rating;
@@ -19,14 +17,14 @@ const exerciseCalculator = (hours: number[]): Result => {
     trainingDays.forEach(hours => totalHours += hours);
     const average = totalHours / hours.length;
     if (average > 3) {
-        rating = 3
-        ratingDescription = "Excellent Job !"
-    } if (average > 1) {
-        rating = 2
-        ratingDescription = "Good Job but can do better !"
+        rating = 3;
+        ratingDescription = "Excellent Job !";
+    } if (average > 2) {
+        rating = 2;
+        ratingDescription = "Good Job but can do better !";
     } else {
-        rating = 1
-        ratingDescription = "Significant room to improve..."
+        rating = 1;
+        ratingDescription = "Significant room to improve...";
     }
     return {
         periodLength: hours.length,
@@ -34,9 +32,10 @@ const exerciseCalculator = (hours: number[]): Result => {
         success: average >= 2,
         rating,
         ratingDescription,
-        target: 2,
+        target,
         average
-    }
-}
+    };
+};
 
-console.log(exerciseCalculator(processedArgs()))
+
+export default exerciseCalculator;
