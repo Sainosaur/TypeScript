@@ -1,6 +1,11 @@
 import express from 'express';
-
+import cors from 'cors';
 const app = express();
+
+const PORT = 3001;
+
+app.use(cors());
+
 
 app.get('/api/ping', (_req, res) => {
     console.log('Get request recieved');
@@ -8,6 +13,6 @@ app.get('/api/ping', (_req, res) => {
 });
 
 
-app.listen(4000, () => {
-    console.log('Server Listening at port 4000');
+app.listen(PORT, () => {
+    console.log(`Server Listening at port ${PORT}`);
 });
