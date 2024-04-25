@@ -1,8 +1,11 @@
 import data from "../../data/patients";
-import { NonSensitivePatient } from "../types";
+import { NonSensitivePatient, patient} from "../types";
+
+// Creates copy of data that can be changed during runtime
+let localData = data;
 
 export const getNonSensitiveData = (): NonSensitivePatient[] => {
-    return data.map(patient => {
+    return localData.map(patient => {
         return {
             id: patient.id,
             name: patient.name,
@@ -11,4 +14,9 @@ export const getNonSensitiveData = (): NonSensitivePatient[] => {
             occupation: patient.occupation
         };
     });
+};
+
+
+export const addPatient = (person: patient) => {
+    localData = localData.concat(person);
 };
