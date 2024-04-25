@@ -16,8 +16,12 @@ patientRouter.post('/', (req, res) => {
         addPatient(patient);
         res.json(patient);
         res.status(200);
-    } catch {
-        res.status(500);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.log(error.message)
+            res.json("Error" + error.message);
+            res.status(500);
+        }
     }
 
 });
