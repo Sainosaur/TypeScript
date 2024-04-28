@@ -25,7 +25,7 @@ const isWeather = (value: unknown): value is Weather => {
 }
 
 const isDiary = (object: unknown): object is DiaryEntry => {
-    if ("visibility" in object && "weather" in object && "date" in object && "id" in object ) {
+    if ( object instanceof Object &&  "visibility" in object && "weather" in object && "date" in object && "id" in object ) {
         return isNumber(object.id) && isString(object.date) && isWeather(object.weather) && isVisibility(object.visibility)
     } else {
         throw new Error("Invalid diary object")
