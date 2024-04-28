@@ -38,5 +38,6 @@ export const parseDiaries = (diaries: unknown[]) => {
             throw new Error(`Illegal Diary ${JSON.stringify(diary)}`)
         }
     });
+    // returns the input data as diary entries. If no errors are thrown by the code above, we can be sure that all of the incoming data contains diary entry objects. 
     return diaries as DiaryEntry[]
 }
