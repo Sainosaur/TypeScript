@@ -1,15 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
-import Notification from './Notification'
+import Notification from './Notification';
 
-const baseURL = "http://localhost:3000/api"
+const baseURL = "http://localhost:3000/api";
 
-interface ServerError {
-    message: string;
-    response: {
-        data: string
-    }
-  }
+
 const DiaryForm = () => {
     const [date, setDate] = useState('');
     const [visibility , setVisibility] = useState('');
@@ -17,23 +12,28 @@ const DiaryForm = () => {
     const [comment, setComment] = useState('');
     const [notification, setNotification] = useState('');
 
-    const handleSubmit = async (event: React.SyntheticEvent) => {
-        event.preventDefault()
-        try {
-            await axios.post(`${baseURL}/diaries`, {
-                date,
-                visibility,
-                weather,
-                comment
-            })
-        } catch (error: unknown) {
-            console.log(error)
-            if (axios.isAxiosError<ServerError>(error)) {
-                setNotification(error.response.data)
-            } 
-        }
 
-    }
+// aynchronous functions didn't work with this for some reason so had to use this method
+
+    const handleSubmit = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        axios.post(`${baseURL}/diaries`, {
+            date,
+            visibility,
+            weather,
+            comment
+        })
+        .catch((error: unknown) => {
+            if (axios.isAxiosError(error) ) {
+                setNotification(error.response?.data || "Unknown server error");
+                setTimeout(() => setNotification(''), 5000);
+
+            } else {
+                setNotification("Unknown server error")
+                setTimeout(() => setNotification(''), 5000);
+            }
+        });
+    };
     return (
         <div>
             <Notification notification={notification} />
@@ -46,7 +46,7 @@ const DiaryForm = () => {
             </form>
         </div>
 
-    )
-}
+    );
+};
 
-export default DiaryForm
+export default DiaryForm;

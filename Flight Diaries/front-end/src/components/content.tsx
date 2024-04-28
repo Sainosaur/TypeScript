@@ -11,10 +11,10 @@ const Content = ({diaries}: {diaries: DiaryEntry[]}): JSX.Element => {
                         <p>weather: {diary.weather} </p>
                     </div>
 
-                )
+                );
             })}
         </>
-    )
-}
+    );
+};
 
-export default Content
+export default Content;
