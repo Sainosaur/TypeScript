@@ -25,11 +25,11 @@ const DiaryForm = () => {
         })
         .catch((error: unknown) => {
             if (axios.isAxiosError(error) ) {
-                setNotification(error.response?.data || "Unknown server error");
+                setNotification(String(error.response?.data) || "Unknown server error");
                 setTimeout(() => setNotification(''), 5000);
 
             } else {
-                setNotification("Unknown server error")
+                setNotification("Unknown server error");
                 setTimeout(() => setNotification(''), 5000);
             }
         });
@@ -39,8 +39,19 @@ const DiaryForm = () => {
             <Notification notification={notification} />
             <form onSubmit={(event) => handleSubmit(event)}>
                 <p>date: <input value={date} type="date" onChange={(event) => setDate(event.target.value)} /> </p>
-                <p>visibility: <input value={visibility} onChange={(event) => setVisibility(event.target.value)}/></p>
-                <p>weather: <input value={weather} onChange={(event) => setWeather(event.target.value)} /></p>
+                <div>visibility: 
+                    <input type="radio" value="great" onChange={(event) => setVisibility(event.target.value)} /> <label>Great</label>
+                    <input type="radio" value="good" onChange={(event) => setVisibility(event.target.value)} /> <label>Good</label>
+                    <input type="radio" value="ok" onChange={(event) => setVisibility(event.target.value)} /> <label>Ok</label>
+                    <input type="radio" value="poor" onChange={(event) => setVisibility(event.target.value)} /> <label>Poor</label>
+                </div>
+                <div>weather: 
+                    <input type="radio" value="sunny" onChange={(event) => setWeather(event.target.value)} /> <label>Sunny</label>
+                    <input type="radio" value="rainy" onChange={(event) => setWeather(event.target.value)} /> <label>Rainy</label>
+                    <input type="radio" value="cloudy" onChange={(event) => setWeather(event.target.value)} /> <label>Cloudy</label>
+                    <input type="radio" value="stormy" onChange={(event) => setWeather(event.target.value)} /> <label>Stormy</label>
+                    <input type="radio" value="windy" onChange={(event) => setWeather(event.target.value)} /> <label>Windy</label>
+                </div>
                 <p>comment: <input value={comment} onChange={(event) => setComment(event.target.value)} /></p>
                 <button type="submit" >Submit</button>
             </form>
