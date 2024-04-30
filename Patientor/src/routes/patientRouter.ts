@@ -1,4 +1,5 @@
 import express from 'express';
+import { NonSensitivePatient} from '../types';
 import { addPatient, getNonSensitiveData } from '../services/patientService';
 import { parsePatient } from '../utils';
 
@@ -18,12 +19,16 @@ patientRouter.post('/', (req, res) => {
         res.status(200);
     } catch (error: unknown) {
         if (error instanceof Error) {
-            console.log(error.message)
             res.json("Error" + error.message);
             res.status(500);
         }
     }
+});
 
+patientRouter.get('/:id', (req, res) => {
+    const patients = getNonSensitiveData();
+    const pati = patients.find((pa: NonSensitivePatient) => pa.id == req.params.id);
+    res.json(pati);
 });
 
 export default patientRouter;
