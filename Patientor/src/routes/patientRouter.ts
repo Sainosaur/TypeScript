@@ -1,6 +1,6 @@
 import express from 'express';
 import { patient} from '../types';
-import { addPatient, getSensitiveData } from '../services/patientService';
+import { addPatient, getSensitiveData, getNonSensitiveData } from '../services/patientService';
 import { parsePatient } from '../utils';
 
 

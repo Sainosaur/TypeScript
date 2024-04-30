@@ -19,7 +19,7 @@ export const getNonSensitiveData = (): NonSensitivePatient[] => {
 
 export const getSensitiveData = () : patient[] => {
     return data;
-}
+};
 
 export const addPatient = (person: patient) => {
     localData = localData.concat(person);
