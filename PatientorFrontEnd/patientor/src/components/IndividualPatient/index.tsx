@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
-import patientService from "../services/patients";
+import patientService from "../../services/patients";
 import { useState, useEffect } from "react";
-import { Patient, Gender } from "../types";
+import { Patient } from "../../types";
+
 import { Man2 as Man, Woman2 as Woman, QuestionMark } from "@mui/icons-material";
+import RenderEntry from './Entry';
 
 const renderGender = (gender: string): JSX.Element => {
     if (gender == "male") {
@@ -44,6 +46,7 @@ const IndividualPatient = (): JSX.Element => {
                 <h2>{patientData.name} {renderGender(patientData.gender)}</h2>
                 <p>SSN: {patientData.ssn || "Unknown"}</p>
                 <p>occupation: {patientData.occupation}</p>
+                {patientData.entries.map((entry) => <RenderEntry key={entry.id} entry={entry} />)}
             </>
         );
     }
