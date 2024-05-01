@@ -21,23 +21,24 @@ const renderGender = (gender: string): JSX.Element => {
 };
 
 const IndividualPatient = (): JSX.Element => {
-    const [patientData, setPatientData] = useState<Patient>({
-        name: "",
-        id: "",
-        gender: Gender.Other,
-        occupation: "",
-    });
+    const [patientData, setPatientData] = useState<Patient>();
     const params = useParams();
-
-        useEffect(() => {
-            if (params.id) {   
-                patientService.getID(params.id).then((data) => {
-                    setPatientData(data);
-                });
-            } else {
-                throw new Error("Invalid ID!");
-            }
-        }, [params.id]);
+    useEffect(() => {
+        if (params.id) {   
+            patientService.getID(params.id).then((data) => {
+                setPatientData(data);
+            });
+        } else {
+            throw new Error("Invalid ID!");
+        }
+    }, [params.id]);
+    if (!patientData) {
+        return (
+            <>
+                Loading...
+            </>
+        );
+    } else {
         return (
             <>
                 <h2>{patientData.name} {renderGender(patientData.gender)}</h2>
@@ -45,6 +46,8 @@ const IndividualPatient = (): JSX.Element => {
                 <p>occupation: {patientData.occupation}</p>
             </>
         );
+    }
+
 };
 
 export default IndividualPatient;
