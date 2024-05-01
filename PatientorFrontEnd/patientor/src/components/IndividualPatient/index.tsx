@@ -46,6 +46,7 @@ const IndividualPatient = (): JSX.Element => {
                 <h2>{patientData.name} {renderGender(patientData.gender)}</h2>
                 <p>SSN: {patientData.ssn || "Unknown"}</p>
                 <p>occupation: {patientData.occupation}</p>
+                <h2>entries:</h2>
                 {patientData.entries.map((entry) => <RenderEntry key={entry.id} entry={entry} />)}
             </>
         );
