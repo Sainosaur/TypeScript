@@ -5,6 +5,7 @@ import { Patient, Diagnosis } from "../../types";
 import { getAll } from '../../services/diagnosis';
 
 import { Man2 as Man, Woman2 as Woman, QuestionMark } from "@mui/icons-material";
+import { LinearProgress } from "@mui/material";
 import RenderEntry from './Entry';
 
 const renderGender = (gender: string): JSX.Element => {
@@ -41,9 +42,11 @@ const IndividualPatient = (): JSX.Element => {
     }, [params.id]);
     if (!patientData || !diagnoses) {
         return (
-            <>
-                Loading...
-            </>
+            <div>
+                <p>Loading...</p>
+                <LinearProgress />
+            </div>
+
         );
     } else {
         return (

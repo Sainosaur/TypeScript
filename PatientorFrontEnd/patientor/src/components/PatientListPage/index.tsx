@@ -23,7 +23,7 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
   const [error, setError] = useState<string>();
 
   const openModal = (): void => setModalOpen(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const closeModal = (): void => {
     setModalOpen(false);
     setError(undefined);

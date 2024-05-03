@@ -5,6 +5,17 @@ export enum HealthCheckRating {
   "CriticalRisk" = 3
 }
 
+export interface HealthCheckValues {
+  0: "Healthy",
+  1: "LowRisk",
+  2: "HighRisk",
+  3: "CriticalRisk",
+  "Healthy" : 0,
+  "LowRisk" : 1,
+  "HighRisk" : 2,
+  "CriticalRisk" : 3
+}
+
 export interface discharge {
   date: string;
   criteria: string;
@@ -23,7 +34,7 @@ export interface BasicEntry {
   description: string
 }
 
-export interface HopsitalEntry extends BasicEntry {
+export interface HospitalEntry extends BasicEntry {
   type: "Hospital";
   discharge: discharge;
 }
@@ -39,7 +50,7 @@ export interface HealthCheckEntry extends BasicEntry {
   healthCheckRating: HealthCheckRating;
 }
 
-export type Entry = HopsitalEntry | OccupationalHealthcareEntry | HealthCheckEntry;
+export type Entry = HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry;
 
 export interface Diagnosis {
   code: string;
