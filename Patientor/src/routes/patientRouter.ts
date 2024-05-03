@@ -1,7 +1,7 @@
 import express from 'express';
 import { patient} from '../types';
-import { addPatient, getSensitiveData, getNonSensitiveData } from '../services/patientService';
-import { parsePatient } from '../utils';
+import { addPatient, getSensitiveData, getNonSensitiveData, addEntry } from '../services/patientService';
+import { parsePatient, parseHealthCheckEntry, parseHospitalEntry, parseOccupationalHealthcareEntry } from '../utils';
 
 
 const patientRouter = express.Router();
@@ -22,6 +22,28 @@ patientRouter.post('/', (req, res) => {
             res.json("Error" + error.message);
             res.status(500);
         }
+    }
+});
+
+patientRouter.post('/:id/entries', (req, res) => {
+    switch(req.body.type) {
+        case "Hospital":
+            const hospitalEntry = parseHospitalEntry(req.body);
+            addEntry(hospitalEntry, req.params.id);
+            res.json(hospitalEntry);
+            break;
+        case "HealthCheck":
+            const healthCheckEntry = parseHealthCheckEntry(req.body);
+            addEntry(healthCheckEntry, req.params.id);
+            res.json(healthCheckEntry);
+            break;
+        case "OccupationalHealthcare":
+            const OccupationalHealthcareEntry = parseOccupationalHealthcareEntry(req.body);
+            addEntry(OccupationalHealthcareEntry, req.params.id);
+            res.json(OccupationalHealthcareEntry);
+            break;
+        default:
+            throw new Error(`Invalid type ${req.body.type}`);
     }
 });
 

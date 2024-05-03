@@ -23,7 +23,7 @@ diagnosisCodes?: string[];
 description: string
 }
 
-export interface HopsitalEntry extends BasicEntry {
+export interface HospitalEntry extends BasicEntry {
 type: "Hospital";
 discharge: discharge;
 }
@@ -39,7 +39,7 @@ type: "HealthCheck";
 healthCheckRating: HealthCheckRating;
 }
 
-export type Entry = HopsitalEntry | OccupationalHealthcareEntry | HealthCheckEntry;
+export type Entry = HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry;
 
 
 export enum Gender {
@@ -48,7 +48,7 @@ export enum Gender {
     Other = "other"
 }
 
-export interface diagnosis  {
+export interface Diagnosis  {
     code: string
     name: string
     latin?: string
