@@ -11,7 +11,8 @@ import WarningIcon from '@mui/icons-material/Warning';
 import { Rating } from '@mui/material';
 
 const RenderHealthCheckEntry = ({ entry, diagnoses } : { entry: HealthCheckEntry , diagnoses: Diagnosis[] }): JSX.Element => {
-    const healthCheckValues: HealthCheckValues = HealthCheckRating.valueOf();
+    // Asserting type here fixes errors with the HealthCheckValues type being incomplete...
+    const healthCheckValues = HealthCheckRating.valueOf() as HealthCheckValues;
     return (
         <Card variant="outlined">
             <CardContent>

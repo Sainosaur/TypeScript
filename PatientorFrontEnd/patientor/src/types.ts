@@ -52,6 +52,11 @@ export interface HealthCheckEntry extends BasicEntry {
 
 export type Entry = HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry;
 
+type UnionOmit<T, K extends string | number | symbol> = T extends K ? T : Omit<T, K>;
+
+export type AddEntry = UnionOmit<Entry, "id">;
+
+
 export interface Diagnosis {
   code: string;
   name: string;
