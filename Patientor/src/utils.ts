@@ -92,7 +92,6 @@ export const parseHealthCheckEntry = (value: unknown): HealthCheckEntry => {
 
 export const parseOccupationalHealthcareEntry = (value: unknown): OccupationalHealthcareEntry => {
     const entry = parseEntry(value);
-    console.log(entry)
     if ("employerName" in entry && typeof(entry.employerName) == "string") {
         return entry;
     } else {

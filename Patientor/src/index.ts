@@ -20,3 +20,8 @@ app.get('/api/ping', (_req, res) => {
 app.listen(PORT, () => {
     console.log(`Server Listening at port ${PORT}`);
 });
+
+app.use((err: Error, _req: express.Request, res: express.Response, next: express.NextFunction) => {
+    res.status(500).json(err.message);
+    next(err);
+});
