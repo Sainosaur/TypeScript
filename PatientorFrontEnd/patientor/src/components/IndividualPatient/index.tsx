@@ -56,7 +56,7 @@ const IndividualPatient = (): JSX.Element => {
                 <h2>{patientData.name} {renderGender(patientData.gender)}</h2>
                 <p>SSN: {patientData.ssn || "Unknown"}</p>
                 <p>occupation: {patientData.occupation}</p>
-                {showForm ? <EntryForm setShowForm={setShowForm} /> : <Button onClick={() => setShowForm(!showForm)} >New Entry</Button>}
+                {showForm ? <EntryForm setShowForm={setShowForm} /> : <Button variant="contained" onClick={() => setShowForm(!showForm)} >New Entry</Button>}
                 <h2>entries:</h2>
                 {patientData.entries.map((entry) => <RenderEntry key={entry.id} entry={entry} diagnoses={diagnoses} />)}
             </>
