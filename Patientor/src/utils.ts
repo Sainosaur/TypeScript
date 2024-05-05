@@ -47,7 +47,7 @@ export const parsePatient = (person: unknown): patient => {
 
 const isEntry = (value: unknown): value is Entry => {
     if (value instanceof Object && "date" in value && "specialist" in value && "description" in value && "type" in value) {
-        return isString(value.date) && isString(value.specialist) && isString(value.description) && isType(value.type);
+        return isString(value.date) && isString(value.specialist) && isString(value.description) && isType(value.type) && value.specialist.length !== 0 && value.description.length !== 0;
     }
     return false;
 };
@@ -74,7 +74,7 @@ export const parseEntry = (entry: unknown): Entry => {
 
 export const parseHospitalEntry = (value: unknown): HospitalEntry => {
     const entry = parseEntry(value);
-    if ("discharge" in entry && "date" in entry.discharge && "criteria" in entry.discharge && isString(entry.discharge.criteria) && isString(entry.discharge.date)) {
+    if ("discharge" in entry && "date" in entry.discharge && "criteria" in entry.discharge && isString(entry.discharge.criteria) && isString(entry.discharge.date) && entry.discharge.date.length !== 0 && entry.discharge.criteria.length !== 0) {
         return entry;
     } else {
         throw new Error("Invalid discharge data");
